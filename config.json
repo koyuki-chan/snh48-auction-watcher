@@ -1,0 +1,4 @@
+{
+    "operation_log": "log/operation.log",
+    "error_log": "log/error.log"
+}
