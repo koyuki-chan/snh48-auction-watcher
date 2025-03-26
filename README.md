@@ -8,8 +8,8 @@
 1. Ensure you have Python 3.6 or later installed.
 2. Clone the repository:
     ```bash
-    git clone https://github.com/koyuki-chan/snh48-auction-monitor.git
-    cd snh48-auction-monitor
+    git clone https://github.com/koyuki-chan/snh48-auction-watcher.git
+    cd snh48-auction-watcher
     ```
 3. Install the required Python packages:
     ```bash
