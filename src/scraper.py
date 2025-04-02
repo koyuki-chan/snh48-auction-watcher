@@ -5,10 +5,12 @@ from src.db import insert_goods_data,get_max_goods_id
 from time import sleep
 URL = "https://shop.48.cn/pai"
 PAGE_URL = "https://shop.48.cn/pai?pageNum={}"
+
 def check_auction():
     auction_data_dict = {}
     page = 0            # Start From 0
     max_db_id = get_max_goods_id()
+
 
     try:
         log_info("開始爬取拍賣數據...")
@@ -25,6 +27,7 @@ def check_auction():
             for item in goods_items:
                 link = item.select_one('.gs_1 a')['href']
                 item_id = link.split('/')[-1]
+
                 if int(item_id) <= max_db_id:
                     log_info(f"發現已存在的ID（{item_id}）,停止爬取。")
                     return auction_data_dict
@@ -42,6 +45,9 @@ def check_auction():
                 spans = item.select('.gs_6 span')
                 if len(spans) > 1:
                     auction_status = spans[1].text.strip().replace("竞价状态：", "").strip()
+                if auction_status == "已结束" and max_db_id == 0:
+                    log_info(f"商品 {item_id} 已結束，跳過該商品")
+                    continue
                 auction_data_dict[item_id] = {
                 'id': item_id, 
                 'name': auction_data['gs_2'],
