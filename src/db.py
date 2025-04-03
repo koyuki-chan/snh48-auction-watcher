@@ -8,7 +8,7 @@ def get_max_goods_id():
     try:
         conn = sqlite3.connect(DB_NAME)
         cursor = conn.cursor()
-        cursor.execute("SELECT MAX(id) FROM goods")
+        cursor.execute('SELECT MAX(id) FROM goods WHERE auction_status = "已结束"')
         max_id = cursor.fetchone()[0]
         cursor.close()
         return max_id if max_id else 0
