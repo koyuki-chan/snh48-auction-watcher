@@ -28,7 +28,7 @@ class AuctionBot:
                 embed.add_field(name="起拍價", value=f"{item['current_price']} RMB", inline=False)
                 embed.add_field(name="出價數量", value=item['bid_count'], inline=True)
                 embed.add_field(name="拍賣狀態", value=item['auction_status'], inline=True)
-                embed.add_field(name="查看商品", value=f"[點擊這裡](https://shop.48.cn/item/{item_id})", inline=False)
+                embed.add_field(name="查看商品", value=f"[點擊這裡](https://shop.48.cn/pai/item/{item_id})", inline=False)
 
                 if item.get('img_url'):  # 確保每個 embed 只設置一次圖片
                     embed.set_image(url=item['img_url'])
@@ -44,7 +44,7 @@ class AuctionBot:
 
                 embed.add_field(name="出價數量", value=item['bid_count'], inline=True)
                 embed.add_field(name="拍賣狀態", value=item['auction_status'], inline=True)
-                embed.add_field(name="查看商品", value=f"[點擊這裡](https://shop.48.cn/item/{item_id})", inline=False)
+                embed.add_field(name="查看商品", value=f"[點擊這裡](https://shop.48.cn/pai/item/{item_id})", inline=False)
 
                 if item.get('img_url'):
                     embed.set_image(url=item['img_url'])
@@ -60,7 +60,7 @@ class AuctionBot:
                 embed.add_field(name="商品名稱", value=item['name'], inline=False)
                 embed.add_field(name="競拍狀態", value=auction_status, inline=True)
                 embed.add_field(name="出價數量", value=item['bid_count'], inline=True)
-                embed.add_field(name="查看商品", value=f"[點擊這裡](https://shop.48.cn/item/{item_id})", inline=False)
+                embed.add_field(name="查看商品", value=f"[點擊這裡](https://shop.48.cn/pai/item/{item_id})", inline=False)
 
                 if item.get('img_url'):
                     embed.set_image(url=item['img_url'])

@@ -3,3 +3,4 @@ log/
 src/__pycache__
 .env
 goods_data.db
+requirements.txt

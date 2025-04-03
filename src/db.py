@@ -102,3 +102,43 @@ def delete_goods(item_id):
         log_info(f"商品 {item_id} 刪除成功！")
     except Exception as e:
         log_error(f"刪除商品 {item_id} 時發生錯誤: {e}")
+
+def get_goods_data(item_id):
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+    cursor.execute("""
+    SELECT id,name,img_url,current_price,bid_count,auction_status
+    FROM goods
+    WHERE id =?
+    """,(item_id,))
+    row = cursor.fetchone()
+    conn.close()
+    if row:
+        return {
+            "id": row[0],
+            "name": row[1],
+            "img_url": row[2],
+            "current_price": row[3],
+            "bid_count": row[4],
+            "auction_status": row[5]
+        }
+    return None
+
+def update_goods_data(goods_data):
+    conn =sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    UPDATE goods
+    SET name = ?, img_url = ?, current_price = ?, bid_count = ?, auction_status =?
+    WHERE id =?    
+    """,(
+        goods_data['name'],
+        goods_data['img_url'],
+        goods_data['current_price'],
+        goods_data['bid_count'],
+        goods_data['auction_status'],
+        goods_data['id']
+    ))
+    conn.commit()
+    conn.close()
